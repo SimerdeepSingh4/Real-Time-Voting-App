@@ -99,57 +99,67 @@ export default function Result() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate("/vote")}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Vote
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <TrendingUp className="w-6 h-6 text-primary" />
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate("/vote")}
+                className="px-2 sm:px-3"
+              >
+                <ArrowLeft className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Back to Vote</span>
+              </Button>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="bg-primary/10 p-2 rounded-lg">
+                  <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                </div>
+                <div>
+                  <h1 className="text-lg sm:text-xl font-bold text-foreground">Live Results</h1>
+                  <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">
+                    Real-time voting statistics
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">Live Results</h1>
-                <p className="text-sm text-muted-foreground">
-                  Real-time voting statistics
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
-              <Users className="w-4 h-4" />
-              <span>{totalVotes} total votes</span>
             </div>
             
-            {/* Real-time indicator */}
-            <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
-              <span className="text-xs text-muted-foreground hidden sm:inline">
-                {isConnected ? 'Live' : 'Offline'}
-              </span>
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+              <div className="flex items-center gap-2">
+                <div className="sm:hidden flex items-center gap-2 text-sm text-muted-foreground">
+                  <Users className="w-4 h-4" />
+                  <span>{totalVotes} votes</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
+                  <Users className="w-4 h-4" />
+                  <span>{totalVotes} total votes</span>
+                </div>
+                
+                {/* Real-time indicator */}
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
+                  <span className="text-xs text-muted-foreground hidden sm:inline">
+                    {isConnected ? 'Live' : 'Offline'}
+                  </span>
+                </div>
+              </div>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate("/")}
+                className="px-2 sm:px-3"
+              >
+                <Home className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Home</span>
+              </Button>
             </div>
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate("/")}
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Home
-            </Button>
           </div>
         </div>
       </motion.header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Main Results */}
           <motion.div
             className="lg:col-span-3 space-y-6"
@@ -166,9 +176,9 @@ export default function Result() {
             />
 
             {/* Detailed Results */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-foreground">Detailed Results</h2>
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground">Detailed Results</h2>
                 <Button
                   variant="outline"
                   size="sm"
@@ -218,21 +228,21 @@ export default function Result() {
                         return (
                           <motion.div
                             key={result._id}
-                            className={`p-4 rounded-lg border ${
+                            className={`p-3 sm:p-4 rounded-lg border ${
                               isLeading ? 'border-primary bg-primary/5' : 'border-border bg-card'
                             }`}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                           >
-                            <div className="flex justify-between items-center mb-2">
-                              <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                            <div className="flex justify-between items-start sm:items-center mb-2">
+                              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                                <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${
                                   index === 0 ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'
                                 }`}>
                                   {index + 1}
                                 </div>
-                                <span className="font-semibold text-foreground">{result._id}</span>
+                                <span className="font-semibold text-foreground text-sm sm:text-base">{result._id}</span>
                                 {isLeading && (
                                   <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
                                     {statusLabel}
@@ -240,8 +250,8 @@ export default function Result() {
                                 )}
                               </div>
                               <div className="text-right">
-                                <div className="text-2xl font-bold text-primary">{result.count}</div>
-                                <div className="text-sm text-muted-foreground">
+                                <div className="text-xl sm:text-2xl font-bold text-primary">{result.count}</div>
+                                <div className="text-xs sm:text-sm text-muted-foreground">
                                   {percentage.toFixed(1)}%
                                 </div>
                               </div>
@@ -266,15 +276,15 @@ export default function Result() {
 
           {/* Sidebar */}
           <motion.div
-            className="space-y-6"
+            className="space-y-4 lg:space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
             {/* Quick Stats */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5" />
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
                 Quick Stats
               </h3>
               
@@ -306,8 +316,8 @@ export default function Result() {
             </div>
 
             {/* Chart Controls */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">
                 Chart Controls
               </h3>
               
@@ -333,8 +343,8 @@ export default function Result() {
             </div>
 
             {/* Live Updates */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">
                 Live Updates
               </h3>
               

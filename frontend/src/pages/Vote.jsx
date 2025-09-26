@@ -160,52 +160,63 @@ export default function Vote() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="bg-primary/10 p-2 rounded-lg">
-              <VoteIcon className="w-6 h-6 text-primary" />
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex justify-between items-center flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <div className="bg-primary/10 p-2 rounded-lg">
+                <VoteIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-lg sm:text-xl font-bold text-foreground">VoteApp</h1>
+                <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Real-time Voting</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground">VoteApp</h1>
-              <p className="text-sm text-muted-foreground">Real-time Voting</p>
+            
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
+                <Users className="w-4 h-4" />
+                <span>{totalVotes} total votes</span>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate("/results")}
+                className="px-2 sm:px-3"
+              >
+                <TrendingUp className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Results</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowProfile(!showProfile)}
+                className="px-2 sm:px-3"
+              >
+                <User className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Profile</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="px-2 sm:px-3"
+              >
+                <LogOut className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
-              <Users className="w-4 h-4" />
-              <span>{totalVotes} total votes</span>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate("/results")}
-            >
-              <TrendingUp className="w-4 h-4 mr-2" />
-              Results
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowProfile(!showProfile)}
-            >
-              <User className="w-4 h-4 mr-2" />
-              Profile
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
+          {/* Mobile vote count display */}
+          <div className="md:hidden mt-2 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <Users className="w-4 h-4" />
+            <span>{totalVotes} total votes</span>
           </div>
         </div>
       </motion.header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Voting Section */}
           <motion.div
             className="lg:col-span-2 space-y-6"
@@ -213,12 +224,12 @@ export default function Vote() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-foreground mb-2">
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <div className="text-center mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                   Cast Your Vote
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Choose your preferred option below
                 </p>
               </div>
@@ -242,7 +253,7 @@ export default function Vote() {
                 </motion.div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 {VOTE_OPTIONS.map((option, index) => (
                   <motion.div
                     key={option.id}
@@ -253,7 +264,7 @@ export default function Vote() {
                     <Button
                       onClick={() => handleVote(option.label)}
                       disabled={loading || hasVoted}
-                      className="w-full h-24 flex flex-col items-center justify-center gap-2 relative overflow-hidden group"
+                      className="w-full h-20 sm:h-24 flex flex-col items-center justify-center gap-1 sm:gap-2 relative overflow-hidden group"
                       style={{ 
                         backgroundColor: hasVoted ? '#e5e7eb' : option.color,
                         color: hasVoted ? '#6b7280' : 'white'
@@ -317,7 +328,7 @@ export default function Vote() {
 
           {/* Sidebar */}
           <motion.div
-            className="space-y-6"
+            className="space-y-4 lg:space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
@@ -331,8 +342,8 @@ export default function Vote() {
             )}
 
             {/* Live Stats */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5" />
                 Live Statistics
               </h3>
@@ -358,8 +369,8 @@ export default function Vote() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-card border rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
+            <div className="bg-card border rounded-2xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">
                 Quick Actions
               </h3>
               

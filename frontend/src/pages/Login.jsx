@@ -42,14 +42,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center p-4 sm:p-6">
       <motion.div
         className="w-full max-w-md"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="bg-card border shadow-2xl rounded-2xl p-8">
+        <div className="bg-card border shadow-2xl rounded-2xl p-6 sm:p-8">
           <div className="text-center mb-8">
             <motion.div
               className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4"
@@ -59,10 +59,10 @@ export default function Login() {
             >
               <Vote className="w-8 h-8 text-primary" />
             </motion.div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Welcome to VoteApp
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               Enter your name to start voting
             </p>
           </div>
